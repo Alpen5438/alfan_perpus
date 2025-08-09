@@ -1,0 +1,26 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
+class Pinjam extends Model
+{
+    use HasFactory,SoftDeletes;
+
+    protected $table = 'pinjams';
+    protected $primarykey = 'id';
+    protected $fillable = ['id', 'buku-id', 'user-id', 'tgl-pinjam', 'tgl-kembali', 'status'];
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(user::class);
+    }
+        public function buku(): BelongsTo
+    {
+        return $this->belongsTo(buku::class);
+    }
+}
+
