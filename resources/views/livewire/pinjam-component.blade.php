@@ -1,7 +1,7 @@
 <div>
     <div class="card">
         <div class="card-header">
-            Kelola User
+            Pinjam Buku
         </div>
         <div class="card-body">
             @if (session()->has('success'))
@@ -11,24 +11,27 @@
                     </div>
                 </div>
             @endif
-            <input type="text" wire:model.live="cari" class="form-control w-50" placeholder="Cari..">
             <div class="table-responsive">
                 <table class="table">
                     <thead>
                         <tr>
                             <th scope="col">No.</th>
-                            <th scope="col">Nama</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Jenis</th>
+                            <th scope="col">Buku</th>
+                            <th scope="col">Member</th>
+                            <th scope="col">Tanggal Pinjam</th>
+                            <th scope="col">Tanggal Kembali</th>
+                            <th scope="col">Status</th>
                             <th>Proses</th>
                     </thead>
                     <tbody>
-                        @foreach ($user as $data)
+                        @foreach ($pinjam as $data)
                             <tr>
                                 <th scope="row">{{ $loop->iteration }}</th>
-                                <td>{{ $data->nama }}</td>
-                                <td>{{ $data->email }}</td>
-                                <td>{{ $data->jenis }}</td>
+                                <td>{{ $data->buku->judul }}</td>
+                                <td>{{ $data->user->nama }}</td>
+                                <td>{{ $data->tgl_pinjam }}</td>
+                                <td>{{ $data->tgl_kembali }}</td>
+                                <td>{{ $data->status }}</td>
                                 <td>
                                     <a href="#" wire:click="edit({{ $data->id }})" class="btn btn-sm btn-info"data-toggle="modal" data-target="#editPage">Ubah</a>
                                     <a href="#" wire:click="confirm({{ $data->id }})" data-toggle="modal" data-target="#deletePage" class="btn btn-sm btn-danger">Hapus</a>
@@ -37,9 +40,9 @@
                         @endforeach
                     </tbody>
                 </table>
-                {{ $user->links() }}
+                {{ $pinjam ->links() }}
             </div>
-            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#addPage">Tambah</a>
+            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#addPage">Tambah Buku</a>
         </div>
     </div>
     {{-- Tambah --}}
@@ -48,7 +51,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Tambah User</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Tambah Pinjam Buku</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -56,24 +59,27 @@
                 <div class="modal-body">
                     <form>
                         <div class="form group">
-                            <label for="nama">Nama</label>
-                            <input type="text" class="form-control" wire:model="nama" value="{{ @old('nama') }}">
-                            @error('nama')
+                            <label for="nama">Judul Buku</label>
+                            <select wire:model="buku" class="form-control">
+                                <option value="">--Pilih--</option>
+                                @foreach ($book as $data)
+                                    <option value="{{ $data->id }}">{{ $data->judul }}</option>
+                                @endforeach
+                            </select>
+                            @error('buku')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
+
                         <div class="form group">
-                            <label for="email">Email</label>
-                            <input type="text" class="form-control" wire:model="email" value="{{ @old('email') }}">
-                            @error('email')
-                                <small class="form-text text-danger">{{ $message }}</small>
-                            @enderror
-                        </div>
-                        <div class="form group">
-                            <label for="password">Password</label>
-                            <input type="text" class="form-control" wire:model="password"
-                                value="{{ @old('password') }}">
-                            @error('password')
+                            <label for="nama">Member</label>
+                            <select wire:model="user" class="form-control">
+                                <option value="">--Pilih--</option>
+                                @foreach ($member as $data)
+                                    <option value="{{ $data->id }}">{{ $data->nama }}</option>
+                                @endforeach
+                            </select>
+                            @error('user')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
@@ -81,8 +87,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" wire:click="store" class="btn btn-primary" data-dismiss="modal"
-                    >Save</button>
+                    <button type="button" wire:click="store" class="btn btn-primary">Save</button>
                 </div>
             </div>
         </div>
@@ -93,7 +98,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ubah User</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Ubah Pinjam Buku</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -101,24 +106,27 @@
                 <div class="modal-body">
                     <form>
                         <div class="form group">
-                            <label for="nama">Nama</label>
-                            <input type="text" class="form-control" wire:model="nama" value="{{ @old('nama') }}">
-                            @error('nama')
+                            <label for="nama">Judul Buku</label>
+                            <select wire:model="buku" class="form-control">
+                                <option value="">--Pilih--</option>
+                                @foreach ($book as $data)
+                                    <option value="{{ $data->id }}">{{ $data->judul }}</option>
+                                @endforeach
+                            </select>
+                            @error('buku')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
+
                         <div class="form group">
-                            <label for="email">Email</label>
-                            <input type="text" class="form-control" wire:model="email" value="{{ @old('email') }}">
-                            @error('email')
-                                <small class="form-text text-danger">{{ $message }}</small>
-                            @enderror
-                        </div>
-                        <div class="form group">
-                            <label for="password">Password</label>
-                            <input type="text" class="form-control" wire:model="password"
-                                value="{{ @old('password') }}">
-                            @error('password')
+                            <label for="nama">Member</label>
+                            <select wire:model="user" class="form-control">
+                                <option value="">--Pilih--</option>
+                                @foreach ($member as $data)
+                                    <option value="{{ $data->id }}">{{ $data->nama }}</option>
+                                @endforeach
+                            </select>
+                            @error('user')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
@@ -126,8 +134,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" wire:click="update" class="btn btn-primary" data-dismiss="modal"
-                    >Save</button>
+                    <button type="button" wire:click="update" class="btn btn-primary">Save</button>
                 </div>
             </div>
         </div>
@@ -138,7 +145,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Ubah User</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Hapus Pinjam Buku</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -148,10 +155,9 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" wire:click="destroy" class="btn btn-primary" data-dismiss="modal"
-                        >Yes</button>
+                        <button type="button" wire:click="destroy" class="btn btn-primary" data-dismiss="modal">Yes</button>
                     </div>
                 </div>
             </div>
         </div>
-</div>
+    </div>

@@ -11,7 +11,7 @@ class Buku extends Model
 {
     use HasFactory,SoftDeletes;
 
-    protected $table = 'kubus';
+    protected $table = 'bukus';
     protected $primarykey = 'id';
     protected $fillable = ['id', 'kategori_id', 'judul', 'penulis', 'penerbit', 'isbn', 'tahun', 'jumlah'];
 

@@ -1,7 +1,7 @@
 <div>
     <div class="card">
         <div class="card-header">
-            Kelola User
+            Kelola Kategori Buku
         </div>
         <div class="card-body">
             @if (session()->has('success'))
@@ -18,17 +18,13 @@
                         <tr>
                             <th scope="col">No.</th>
                             <th scope="col">Nama</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Jenis</th>
                             <th>Proses</th>
                     </thead>
                     <tbody>
-                        @foreach ($user as $data)
+                        @foreach ($kategori as $data)
                             <tr>
                                 <th scope="row">{{ $loop->iteration }}</th>
                                 <td>{{ $data->nama }}</td>
-                                <td>{{ $data->email }}</td>
-                                <td>{{ $data->jenis }}</td>
                                 <td>
                                     <a href="#" wire:click="edit({{ $data->id }})" class="btn btn-sm btn-info"data-toggle="modal" data-target="#editPage">Ubah</a>
                                     <a href="#" wire:click="confirm({{ $data->id }})" data-toggle="modal" data-target="#deletePage" class="btn btn-sm btn-danger">Hapus</a>
@@ -37,7 +33,7 @@
                         @endforeach
                     </tbody>
                 </table>
-                {{ $user->links() }}
+                {{ $kategori->links() }}
             </div>
             <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#addPage">Tambah</a>
         </div>
@@ -48,7 +44,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Tambah User</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Tambah Kategori</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -63,17 +59,9 @@
                             @enderror
                         </div>
                         <div class="form group">
-                            <label for="email">Email</label>
-                            <input type="text" class="form-control" wire:model="email" value="{{ @old('email') }}">
-                            @error('email')
-                                <small class="form-text text-danger">{{ $message }}</small>
-                            @enderror
-                        </div>
-                        <div class="form group">
-                            <label for="password">Password</label>
-                            <input type="text" class="form-control" wire:model="password"
-                                value="{{ @old('password') }}">
-                            @error('password')
+                            <label for="nama">Deskripsi</label>
+                            <textarea wire:model="deskripsi" class="form-control" cols="30" rows="10">{{@old('Deskripsi')}}</textarea>
+                            @error('Deskripsi')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
@@ -81,7 +69,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" wire:click="store" class="btn btn-primary" data-dismiss="modal"
+                    <button type="button" wire:click="store" class="btn btn-primary"
                     >Save</button>
                 </div>
             </div>
@@ -93,7 +81,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ubah User</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Ubah Kategori</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -108,17 +96,9 @@
                             @enderror
                         </div>
                         <div class="form group">
-                            <label for="email">Email</label>
-                            <input type="text" class="form-control" wire:model="email" value="{{ @old('email') }}">
-                            @error('email')
-                                <small class="form-text text-danger">{{ $message }}</small>
-                            @enderror
-                        </div>
-                        <div class="form group">
-                            <label for="password">Password</label>
-                            <input type="text" class="form-control" wire:model="password"
-                                value="{{ @old('password') }}">
-                            @error('password')
+                            <label for="nama">Deskripsi</label>
+                            <textarea wire:model="deskripsi" class="form-control" cols="30" rows="10">{{@old('Deskripsi')}}</textarea>
+                            @error('Deskripsi')
                                 <small class="form-text text-danger">{{ $message }}</small>
                             @enderror
                         </div>
@@ -126,7 +106,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" wire:click="update" class="btn btn-primary" data-dismiss="modal"
+                    <button type="button" wire:click="update" class="btn btn-primary"
                     >Save</button>
                 </div>
             </div>
@@ -138,7 +118,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Ubah User</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Hapus Kategori</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -154,4 +134,4 @@
                 </div>
             </div>
         </div>
-</div>
+    </div>

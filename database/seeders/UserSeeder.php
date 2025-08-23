@@ -14,7 +14,7 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        user::create([
+        User::create([
             'nama' => 'admin',
             'alamat' => 'xxxx',
             'telepon' => '12345',

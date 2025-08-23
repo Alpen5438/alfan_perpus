@@ -2,37 +2,37 @@
     <div class="sidebar-sticky">
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a class="nav-link active text-white" href="#dashboard">
+                <a class="nav-link active text-white" href={{route('home')}}>
                     <span data-feather="home"></span>
                     Dashboard
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white" href="#members">
+                <a class="nav-link text-white" href={{route('member')}}>
                     <span data-feather="users"></span>
                     Manage Members
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white" href="#books">
+                <a class="nav-link text-white" href={{route('buku')}}>
                     <span data-feather="book"></span>
                     Manage Books
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white" href="#loans">
+                <a class="nav-link text-white" href={{route('pinjam')}}>
                     <span data-feather="file"></span>
                     Manage Loans
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white" href="#returns">
+                <a class="nav-link text-white" href={{route('kembali')}}>
                     <span data-feather="check-circle"></span>
                     Manage Returns
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white" href="#categories">
+                <a class="nav-link text-white" href={{route('kategori')}}>
                     <span data-feather="tag"></span>
                     Manage Categories
                 </a>
