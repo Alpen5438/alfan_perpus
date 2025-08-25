@@ -50,7 +50,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Tambah Buku</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Tambah Member</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -58,7 +58,7 @@
                     <div class="modal-body">
                         <form>
                             <div class="form group">
-                                <label for="nama">Judul</label>
+                                <label for="nama">Nama</label>
                                 <input type="text" class="form-control" wire:model="nama" value="{{ @old('nama') }}">
                                 @error('nama')
                                     <small class="form-text text-danger">{{ $message }}</small>
