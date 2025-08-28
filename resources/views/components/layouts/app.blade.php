@@ -35,6 +35,10 @@
             margin-left: 0;
         }
 
+        .nav-item:hover {
+            background-color: #ec0d0d;
+        }
+
         @media (max-width: 768px) {
             .sidebar {
                 transform: translateX(-100%);
