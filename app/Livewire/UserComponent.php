@@ -21,7 +21,7 @@ class UserComponent extends Component
             ->paginate(10);
         }
         else{
-            $data['user'] = User::paginate(1);
+            $data['user'] = User::paginate(10);
         }
         
         return view('livewire.user-component', $data)->layoutData($layout);
