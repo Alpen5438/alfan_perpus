@@ -72,7 +72,7 @@
                                 @enderror
                             </div>
                             <div class="form group">
-                                <label for="nama">Alamat</label>
+                                <label for="nama">Alamadt</label>
                                 <textarea wire:model="alamat" class="form-control" cols="30" rows="10">{{@old('alamat')}}</textarea>
                                 @error('Alamat')
                                     <small class="form-text text-danger">{{ $message }}</small>
