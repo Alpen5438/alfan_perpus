@@ -35,7 +35,7 @@
             margin-left: 0;
         }
 
-        .nav-item:hover {
+        .nav-link.active {
             background-color: #ec0d0d;
         }
 
