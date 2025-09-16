@@ -28,7 +28,6 @@
                             <tr>
                                 <th scope="row">{{ $loop->iteration }}</th>
                                 <td>{{ $data->buku->judul }}</td>
-                                <td>{{ $data->user->nama }}</td>
                                 <td>{{ $data->tgl_pinjam }}</td>
                                 <td>{{ $data->tgl_kembali }}</td>
                                 <td>{{ $data->status }}</td>
